@@ -25,22 +25,18 @@ const chainIds = {
 };
 
 // Ensure that we have all the environment variables we need.
-let mnemonic: string;
-if (!process.env.MNEMONIC) {
+const mnemonic = process.env.MNEMONIC;
+if (!mnemonic) {
   throw new Error("Please set your MNEMONIC in a .env file");
-} else {
-  mnemonic = process.env.MNEMONIC;
 }
 
-let infuraApiKey: string;
-if (!process.env.INFURA_API_KEY) {
-  throw new Error("Please set your INFURA_API_KEY in a .env file");
-} else {
-  infuraApiKey = process.env.INFURA_API_KEY;
+const alchemyApiKey = process.env.ALCHEMY_API_KEY;
+if (!alchemyApiKey) {
+  throw new Error("Please set your ALCHEMY_API_KEY in a .env file");
 }
 
 function createTestnetConfig(network: keyof typeof chainIds): NetworkUserConfig {
-  const url: string = "https://" + network + ".infura.io/v3/" + infuraApiKey;
+  const url: string = `https://eth-${network}.alchemyapi.io/v2/${alchemyApiKey}`;
   return {
     accounts: {
       count: 10,
@@ -67,6 +63,9 @@ const config: HardhatUserConfig = {
         mnemonic,
       },
       chainId: chainIds.hardhat,
+      forking: {
+        url: `http://eth-mainnet.alchemyapi.io/v2/${alchemyApiKey}`,
+      },
     },
     goerli: createTestnetConfig("goerli"),
     kovan: createTestnetConfig("kovan"),
