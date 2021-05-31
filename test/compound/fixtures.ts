@@ -49,13 +49,10 @@ export const compoundFixture = async (): Promise<cUSDCFixtureInterface> => {
   await impersonate([USDCWhaleAddr]);
   const USDCWhale = await ethers.getSigner(USDCWhaleAddr);
 
-  // originally we should have 0 USDC
-  console.log("current usdc balance in our wallet: ", (await USDC.balanceOf(wallet.address)).toString());
-  console.log("sending some USDC");
+  // originally we should have 0 USDC in our wallet
   // after transfering it from whale to us
-  await USDC.connect(USDCWhale).transfer(wallet.address, 10000);
   // we should have 10,000 USDC
-  console.log("usdc balance after transfer in our wallet: ", (await USDC.balanceOf(wallet.address)).toString());
+  await USDC.connect(USDCWhale).transfer(wallet.address, 10000);
 
   return {
     wallet,

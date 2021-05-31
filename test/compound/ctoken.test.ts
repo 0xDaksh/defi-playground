@@ -2,7 +2,7 @@ import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import { ComptrollerInterface, CTokenInterface, ERC20 } from "../../typechain";
 import { useChai } from "../utils";
 import { compoundFixture } from "./fixtures";
-
+import { waffle } from "hardhat";
 const expect = useChai();
 
 describe("Deposit & Redeem", function () {
@@ -13,7 +13,7 @@ describe("Deposit & Redeem", function () {
   before(async function () {
     // go read the code for this fixture to understand
     // how we get the wallet, erc20 USDC token and ctoken of USDC
-    ({ wallet, USDC, cUSDC } = await compoundFixture());
+    ({ wallet, USDC, cUSDC } = await waffle.loadFixture(compoundFixture));
   });
 
   it("deposit USDC and get cUSDC", async () => {
@@ -71,7 +71,7 @@ describe("Borrow and Payback", function () {
   before(async function () {
     // go read the code for this fixture to understand
     // how we get the wallet, erc20 USDC token and ctoken of USDC
-    ({ wallet, USDC, DAI, cUSDC, cDAI, comptroller } = await compoundFixture());
+    ({ wallet, USDC, DAI, cUSDC, cDAI, comptroller } = await waffle.loadFixture(compoundFixture));
   });
 
   it("deposit USDC as collateral and borrow DAI", async () => {
