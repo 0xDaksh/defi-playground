@@ -32,6 +32,18 @@ interface CTokenInterface {
         uint256
     ) external returns (bool);
 
+    function getCash() external view returns (uint256);
+
+    function borrowBalanceCurrent(address account) external returns (uint256);
+
+    function totalBorrowsCurrent() external returns (uint256);
+
+    function totalSupply() external returns (uint256);
+
+    function supplyRatePerBlock() external view returns (uint256);
+
+    function borrowRatePerBlock() external view returns (uint256);
+
     event Mint(address minter, uint256 mintAmount, uint256 mintTokens);
     event Redeem(address redeemer, uint256 redeemAmount, uint256 redeemTokens);
     event Borrow(address borrower, uint256 borrowAmount, uint256 accountBorrows, uint256 totalBorrows);
