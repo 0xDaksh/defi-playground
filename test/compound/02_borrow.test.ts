@@ -49,6 +49,8 @@ describe("Borrow and Payback", function () {
     await cDAI.repayBorrow(799);
     // note: there's also a repayBorrowBehalf that allows you to repay someone else's debt
 
+    // cDAI borrowBalanceCurrent should be 0 now
+    expect(await cDAI.callStatic.borrowBalanceCurrent(wallet.address)).to.eq(0);
     // DAI balance should be 0 now
     expect(await DAI.balanceOf(wallet.address)).to.eq(0);
   });
