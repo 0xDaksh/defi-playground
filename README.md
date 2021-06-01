@@ -13,8 +13,8 @@
 ### Helpful Reading
 
 - 💽 [Interfaces](https://github.com/DakshMiglani/lending-protocol-playground/tree/main/contracts/compound) we use to interact with Compound's contracts
-- ＃ [Addresses](https://github.com/DakshMiglani/lending-protocol-playground/blob/main/test/compound/consts.ts) we use to connect to the mainnet deployed contracts
-- ⚡️ Check [Fixtures](https://github.com/DakshMiglani/lending-protocol-playground/blob/a7884730fdf091f79a4f50bcea34baa38efb9799/test/compound/fixtures.ts#L24), we use these to setup our tests
+- ＃ [Addresses](https://github.com/DakshMiglani/lending-protocol-playground/blob/902940632692c3c77f07ceecf2431ebb6cdcad57/test/compound/utils/consts.ts#L1) we use to connect to the mainnet deployed contracts
+- ⚡️ Check [Fixtures](https://github.com/DakshMiglani/lending-protocol-playground/blob/902940632692c3c77f07ceecf2431ebb6cdcad57/test/compound/utils/fixtures.ts#L24), we use these to setup our tests
 
 ### How tos?
 
