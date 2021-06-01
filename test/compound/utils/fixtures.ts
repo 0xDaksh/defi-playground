@@ -8,11 +8,11 @@ import {
   CTokenInterface__factory,
   ERC20,
   ERC20__factory,
-} from "../../typechain";
-import { impersonate } from "../utils";
+} from "../../../typechain";
+import { impersonate } from "../../utils";
 import { cUSDCAddr, cDAIAddr, USDCAddr, USDCWhaleAddr, comptrollerAddr, DAIAddr } from "./consts";
 
-interface cUSDCFixtureInterface {
+interface CompoundFixtureInterface {
   wallet: SignerWithAddress;
   cUSDC: CTokenInterface;
   cDAI: CTokenInterface;
@@ -21,7 +21,7 @@ interface cUSDCFixtureInterface {
   comptroller: ComptrollerInterface;
 }
 
-export const compoundFixture = async (): Promise<cUSDCFixtureInterface> => {
+export const compoundFixture = async (): Promise<CompoundFixtureInterface> => {
   // get a wallet with 1000 ETH
   const [wallet] = await ethers.getSigners();
 
