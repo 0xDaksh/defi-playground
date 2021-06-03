@@ -1,19 +1,12 @@
-import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
-import { CTokenInterface, ERC20 } from "../../typechain";
-import { useChai } from "../utils";
+import { CTokenInterface } from "../../typechain";
 import { compoundFixture } from "./utils/fixtures";
 import { waffle } from "hardhat";
 import { parseUnits } from "@ethersproject/units";
-const expect = useChai();
 
 describe("Statistics, Exchange Rate, etc", function () {
-  // let wallet: SignerWithAddress;
-  // let DAI: ERC20;
   let cDAI: CTokenInterface;
 
   before(async function () {
-    // go read the code for this fixture to understand
-    // how we get the wallet, erc20 DAI token and ctoken of DAI
     ({ cDAI } = await waffle.loadFixture(compoundFixture));
   });
 

@@ -1,12 +1,13 @@
-<h1 align="center">Lending Protocol Playground 📈😱🚀</h1>
+<h1 align="center">DeFi Playground 📈😱🚀</h1>
 
-🙋‍♂️ I made this repo to teach myself, "how to do x with y" where "y" is a lending protocol.
+🙋‍♂️ I made this repo to teach myself, "how to do x with y" where "y" is a DeFi protocol.
 
 ## Requirements
 
 1. Node.js v14+
 2. [Alchemy](http://alchemyapi.io/) - Make an alchemy account and set the `ALCHEMY_API_KEY` environment variable in the .env file
 3. Run `yarn` to install dependencies
+4. Run `yarn test` to test the implementations
 
 ## [Compound Finance](https://compound.finance/)
 

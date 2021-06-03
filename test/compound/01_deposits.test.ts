@@ -12,7 +12,7 @@ describe("Deposit & Redeem", function () {
 
   before(async function () {
     // go read the code for this fixture to understand
-    // how we get the wallet, erc20 USDC token and ctoken of USDC
+    // how we get the wallet, erc20 USDC token, ctoken of USDC and etc.
     ({ wallet, USDC, cUSDC } = await waffle.loadFixture(compoundFixture));
   });
 

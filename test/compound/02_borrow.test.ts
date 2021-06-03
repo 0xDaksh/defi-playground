@@ -15,7 +15,7 @@ describe("Borrow and Payback", function () {
 
   before(async function () {
     // go read the code for this fixture to understand
-    // how we get the wallet, erc20 USDC token and ctoken of USDC
+    // how we get the wallet, erc20 USDC token, ctoken of USDC, etc.
     ({ wallet, USDC, DAI, cUSDC, cDAI, comptroller } = await waffle.loadFixture(compoundFixture));
   });
 
