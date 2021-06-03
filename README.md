@@ -1,3 +1,6 @@
+<p align="center">
+  <img src="./extras/defi-playground-logo.png" />
+</p>
 <h1 align="center">DeFi Playground 📈😱🚀</h1>
 
 🙋‍♂️ I made this repo to teach myself, "how to do x with y" where "y" is a DeFi protocol.
