@@ -23,8 +23,10 @@ interface CompoundFixtureResult {
 }
 
 export const compoundFixture = async (): Promise<CompoundFixtureResult> => {
+  // ethers gives us 10 wallets, let's use the second one
+  // since we already used the first one in aave
   // get a wallet with 1000 ETH
-  const [wallet] = await ethers.getSigners();
+  const [_, wallet] = await ethers.getSigners();
 
   // get the compound controller -> comptroller!
   const comptroller = ComptrollerInterface__factory.connect(comptrollerAddr, wallet);
