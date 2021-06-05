@@ -9,10 +9,11 @@ import {
   ERC20,
   ERC20__factory,
 } from "../../../typechain";
+import { DAIAddr, USDCAddr, USDCWhaleAddr } from "../../consts";
 import { impersonate } from "../../utils";
-import { cUSDCAddr, cDAIAddr, USDCAddr, USDCWhaleAddr, comptrollerAddr, DAIAddr } from "./consts";
+import { cUSDCAddr, cDAIAddr, comptrollerAddr } from "./consts";
 
-interface CompoundFixtureInterface {
+interface CompoundFixtureResult {
   wallet: SignerWithAddress;
   cUSDC: CTokenInterface;
   cDAI: CTokenInterface;
@@ -21,7 +22,7 @@ interface CompoundFixtureInterface {
   comptroller: ComptrollerInterface;
 }
 
-export const compoundFixture = async (): Promise<CompoundFixtureInterface> => {
+export const compoundFixture = async (): Promise<CompoundFixtureResult> => {
   // get a wallet with 1000 ETH
   const [wallet] = await ethers.getSigners();
 
