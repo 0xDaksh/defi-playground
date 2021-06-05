@@ -5,7 +5,7 @@ import { compoundFixture } from "./utils/fixtures";
 import { waffle } from "hardhat";
 const expect = useChai();
 
-describe("Deposit & Redeem", function () {
+describe("Compound: Deposit & Redeem", function () {
   let wallet: SignerWithAddress;
   let USDC: ERC20;
   let cUSDC: CTokenInterface;
@@ -16,7 +16,7 @@ describe("Deposit & Redeem", function () {
     ({ wallet, USDC, cUSDC } = await waffle.loadFixture(compoundFixture));
   });
 
-  it("deposit USDC, get cUSDC", async () => {
+  it("Compound: deposit USDC, get cUSDC", async () => {
     // approve the request for cUSDC to transfer 1000 USDC from your account
     await USDC.approve(cUSDC.address, 1000);
     // mint "x" cUSDC by giving them 1000 USDC
@@ -33,7 +33,7 @@ describe("Deposit & Redeem", function () {
     expect(await cUSDC.callStatic.balanceOfUnderlying(wallet.address)).to.eq(999);
   });
 
-  it("cashes USDC out by returning cUSDC", async () => {
+  it("Compound: cashes USDC out by returning cUSDC", async () => {
     /* there are two ways of cashing out our tokens
     1. by the amount of USDC we want to cash out
     2. by the amount of cUSDC we want to cash out
@@ -62,7 +62,7 @@ describe("Deposit & Redeem", function () {
     expect(await USDC.balanceOf(wallet.address)).to.eq(usdcBalance.add(underlyingUSDC));
   });
 
-  it("earn interest on your deposits", async () => {
+  it("Compound: earn interest on your deposits", async () => {
     /* 
      the past 2 functions demonstrated how you can deposit and reedem your collateral
      as well as basics of cTokens, now let's earn interest.

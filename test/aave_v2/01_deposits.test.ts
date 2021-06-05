@@ -7,7 +7,7 @@ import { aaveV2Fixture } from "./utils/fixtures";
 
 const expect = useChai();
 
-describe("Deposit & Redeem", function () {
+describe("Aave V2: Deposit & Redeem", function () {
   let wallet: SignerWithAddress;
   let aDAI: IAToken;
   let DAI: ERC20;
@@ -17,7 +17,7 @@ describe("Deposit & Redeem", function () {
     ({ wallet, aDAI, DAI, lendingPool: pool } = await waffle.loadFixture(aaveV2Fixture));
   });
 
-  it("deposit", async () => {
+  it("Aave V2: deposit", async () => {
     // let's check our aDAI balance first
     let bal = await aDAI.balanceOf(wallet.address);
     console.log("aDAI balance before deposit = ", formatEther(bal));
@@ -39,10 +39,10 @@ describe("Deposit & Redeem", function () {
     // now we should get 100 aDAI in return for depositing
     bal = await aDAI.balanceOf(wallet.address);
     console.log("aDAI balance after deposit = ", formatEther(bal));
-    expect(bal).to.eq(amt);
+    expect(bal).to.gte(amt.sub(1)); // expect the amount to be lower due to roundoff
   });
 
-  it("withdraw", async () => {
+  it("Aave V2: withdraw", async () => {
     // let's return the aDAI and get back our DAI
     // first let's check the balance of aDAI
     const daiBalBefore = await DAI.balanceOf(wallet.address);
@@ -71,9 +71,9 @@ describe("Deposit & Redeem", function () {
     expect(aDaiBalAfter).to.lte(parseEther("0.0001"));
   });
 
-  it("earn interest", async () => {
+  it("Aave V2: earn interest", async () => {
     // let's get some aDAI first
-    const amt = parseEther("10000");
+    const amt = await DAI.balanceOf(wallet.address);
     await DAI.approve(pool.address, amt);
     await pool.deposit(DAI.address, amt, wallet.address, 0);
 
@@ -83,7 +83,7 @@ describe("Deposit & Redeem", function () {
     // assuming 15 seconds = 1 block
     // let's mine 1week of blocks to gain a good amount of interest
     const seconds_in_week = 24 * 7 * 60 * 60;
-    mineBlocks(seconds_in_week / 15);
+    await mineBlocks(seconds_in_week / 15);
 
     const newBal = await aDAI.balanceOf(wallet.address);
     console.log("aDAI balance after 1 week = ", formatEther(newBal));

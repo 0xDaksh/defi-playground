@@ -5,7 +5,7 @@ import { waffle } from "hardhat";
 import { ERC20, ILendingPool, IPriceOracle } from "../../typechain";
 import { aaveV2Fixture } from "./utils/fixtures";
 
-describe("Get Statistics", function () {
+describe("Aave V2: Get Statistics", function () {
   let wallet: SignerWithAddress;
   let DAI: ERC20;
   let USDC: ERC20;
@@ -25,7 +25,7 @@ describe("Get Statistics", function () {
     await pool.borrow(USDC.address, usdcBal, 1, 0, wallet.address);
   });
 
-  it("Fetches User Account Data", async () => {
+  it("Aave V2: Fetches User Account Data", async () => {
     const data = await pool.getUserAccountData(wallet.address);
     console.log("The following values are in ETH:");
     console.log(`total collateral = ${formatEther(data.totalCollateralETH)} ETH`);
@@ -35,7 +35,7 @@ describe("Get Statistics", function () {
     console.log(`user health = ${formatEther(data.healthFactor)}`);
   });
 
-  it("Get Borrow APR and Supply APY", async () => {
+  it("Aave V2: Get Borrow APR and Supply APY", async () => {
     const data = await pool.getReserveData(DAI.address);
     // all these rates come in Ray (1e27)
     // more info on Ray -> https://medium.com/dapphub/introducing-ds-math-an-innovative-safe-math-library-d58bc88313da
@@ -48,7 +48,7 @@ describe("Get Statistics", function () {
     console.log("DAI Borrow APR (Variable) = ", formatPct(data.currentVariableBorrowRate), "%");
   });
 
-  it("Get the price of token", async () => {
+  it("Aave V2: Get the price of token", async () => {
     const priceOfDAI = await priceOracle.getAssetPrice(DAI.address);
     console.log(`1 DAI = ${formatEther(priceOfDAI)} ETH`);
     const priceOfUSDC = await priceOracle.getAssetPrice(USDC.address);

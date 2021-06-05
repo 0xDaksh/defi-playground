@@ -3,14 +3,14 @@ import { compoundFixture } from "./utils/fixtures";
 import { waffle } from "hardhat";
 import { parseUnits } from "@ethersproject/units";
 
-describe("Statistics, Exchange Rate, etc", function () {
+describe("Compound: Statistics, Exchange Rate, etc", function () {
   let cDAI: CTokenInterface;
 
   before(async function () {
     ({ cDAI } = await waffle.loadFixture(compoundFixture));
   });
 
-  it("gets the exchange rate", async () => {
+  it("Compound: gets the exchange rate", async () => {
     /* 
       according to compound docs, The current exchange rate as an unsigned integer,
       scaled by 1 * 10^(18 - 8 + Underlying Token Decimals).
@@ -29,19 +29,19 @@ describe("Statistics, Exchange Rate, etc", function () {
     console.log("1 CDAI = ", 1 / parseUnits("1", 18).div(exchangeRate).toNumber(), " DAI");
   });
 
-  it("check how many underlying tokens the cToken contract holds", async () => {
+  it("Compound: check how many underlying tokens the cToken contract holds", async () => {
     const cash = await cDAI.callStatic.getCash();
     console.log("The cDAI contract holds over ", cash.toString(), " DAI");
   });
 
-  it("check total borrows and total supply of the underlying token", async () => {
+  it("Compound: check total borrows and total supply of the underlying token", async () => {
     const totalBorrow = await cDAI.callStatic.totalBorrowsCurrent();
     const totalSupply = await cDAI.callStatic.totalSupply();
     console.log("total borrow of DAI = ", totalBorrow.toString());
     console.log("total supply of DAI = ", totalSupply.toString());
   });
 
-  it("calculating borrow and supply APY", async () => {
+  it("Compound: calculating borrow and supply APY", async () => {
     const blocksPerDay = 6570; // 13.15 secs per block
     const daysPerYear = 365;
 

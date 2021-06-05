@@ -5,7 +5,7 @@ import { compoundFixture } from "./utils/fixtures";
 import { waffle } from "hardhat";
 const expect = useChai();
 
-describe("Borrow and Payback", function () {
+describe("Compound: Borrow and Payback", function () {
   let wallet: SignerWithAddress;
   let USDC: ERC20;
   let DAI: ERC20;
@@ -19,7 +19,7 @@ describe("Borrow and Payback", function () {
     ({ wallet, USDC, DAI, cUSDC, cDAI, comptroller } = await waffle.loadFixture(compoundFixture));
   });
 
-  it("deposit USDC as collateral and borrow DAI", async () => {
+  it("Compound: deposit USDC as collateral and borrow DAI", async () => {
     // approve cUSDC to take out 1000 USDC from wallet
     await USDC.approve(cUSDC.address, 1000);
     // deposit 1000 USDC tokens and get the cUSDC in return
@@ -37,12 +37,12 @@ describe("Borrow and Payback", function () {
     expect(await DAI.balanceOf(wallet.address)).to.eq(799);
   });
 
-  it("check the borrow balance of DAI", async () => {
+  it("Compound: check the borrow balance of DAI", async () => {
     const bal = await cDAI.callStatic.borrowBalanceCurrent(wallet.address);
     expect(bal).to.eq(799);
   });
 
-  it("repay the borrowed DAI", async () => {
+  it("Compound: repay the borrowed DAI", async () => {
     // approve cDAI to take out 799 DAI from your account
     await DAI.approve(cDAI.address, 799);
     // repay the borrowed amount

@@ -7,7 +7,7 @@ import { aaveV2Fixture } from "./utils/fixtures";
 
 const expect = useChai();
 
-describe("Borrow and Repay", function () {
+describe("Aave V2: Borrow and Repay", function () {
   let wallet: SignerWithAddress;
   let DAI: ERC20;
   let USDC: ERC20;
@@ -23,7 +23,7 @@ describe("Borrow and Repay", function () {
     await pool.deposit(DAI.address, daiBal, wallet.address, 0);
   });
 
-  it("setting a particular asset as collateral", async () => {
+  it("Aave V2: setting a particular asset as collateral", async () => {
     // let's say you have multiple assets deposited into the aave v2 protocol
     // but you only want to use one of them, to get the loan
     // ie -> in case of liquidations (loan fail), you don't want to lose your other tokens
@@ -34,7 +34,7 @@ describe("Borrow and Repay", function () {
     await pool.setUserUseReserveAsCollateral(DAI.address, true);
   });
 
-  it("borrow stable loan", async () => {
+  it("Aave V2: borrow stable loan", async () => {
     // let's check our USDC balance before we borrow
     const balBefore = await USDC.balanceOf(wallet.address);
     console.log("balance of USDC before we borrow: ", formatUnits(balBefore, 6));
@@ -60,7 +60,7 @@ describe("Borrow and Repay", function () {
     expect(balAfter).to.eq(amt);
   });
 
-  it("change borrow rate mode from stable to variable", async () => {
+  it("Aave V2: change borrow rate mode from stable to variable", async () => {
     // let's assume we have a loan in stable borrowing rate, like we do in previous test
     // how do we convert it from stable to variable borrowing rate?
     // Well, super simple -> we provide the asset address & current rate mode
@@ -69,7 +69,7 @@ describe("Borrow and Repay", function () {
     await pool.swapBorrowRateMode(USDC.address, 1);
   });
 
-  it("repay the borrowed sum (ie: replay the loan)", async () => {
+  it("Aave V2: repay the borrowed sum (ie: repay the loan)", async () => {
     const balBefore = await USDC.balanceOf(wallet.address);
     console.log("USDC balance before repaying debt = ", formatUnits(balBefore, 6));
     expect(balBefore).to.not.eq(0);
