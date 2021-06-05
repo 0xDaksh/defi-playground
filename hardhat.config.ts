@@ -65,6 +65,7 @@ const config: HardhatUserConfig = {
       chainId: chainIds.hardhat,
       forking: {
         url: `http://eth-mainnet.alchemyapi.io/v2/${alchemyApiKey}`,
+        blockNumber: 12570127,
       },
     },
     goerli: createTestnetConfig("goerli"),
