@@ -56,3 +56,4 @@
 9. 🧐 [How to get `user data` (ie: total collateral, debt, amount borrowable)?](./test/aave_v2/03_stats.test.ts#L28)
 10. 🙋‍♂️ [How to get the `supply APY` and `borrow APR` for a `erc20 token`](./test/aave_v2/03_stats.test.ts#L38)
 11. ⚖️ [How to get the `price of erc20 token` in `ETH` from aave oracle?](./test/aave_v2/03_stats.test.ts#L51)
+12. TBD - Flashloans
